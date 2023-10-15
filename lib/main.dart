@@ -9,8 +9,6 @@ void main() {
   ui.platformViewRegistry.registerViewFactory(
       'hello-html',
           (int viewId) => IFrameElement()
-        ..width = '640'
-        ..height = '360'
         ..src = 'assets/html/index.html'
         ..style.border = 'none');
   runApp(const MyApp());

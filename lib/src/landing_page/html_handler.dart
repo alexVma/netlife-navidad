@@ -16,9 +16,9 @@ class _HTMLWidgetState extends State<HTMLWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 500, // Define el ancho del iframe
-      height: 500, // Define la altura del iframe
+    return const SizedBox(
+      width: double.maxFinite, // Define el ancho del iframe
+      height: double.maxFinite, // Define la altura del iframe
       child: AspectRatio(
         aspectRatio: 1,
         child: HtmlElementView(viewType: 'hello-html'),
