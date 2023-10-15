@@ -50817,7 +50817,7 @@ $S:38}
 A.QV.prototype={}
 A.Yw.prototype={
 $1(a){var s,r=document.createElement("iframe")
-r.src="assets/html/index.html"
+r.src="assets/resources/html/index.html"
 s=r.style
 s.border="none"
 return r},
