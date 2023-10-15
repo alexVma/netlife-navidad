@@ -13,18 +13,16 @@ class _HTMLWidgetState extends State<HTMLWidget> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text('hola\nhola\nhola\nhola\nhola\nhola\nhola\nhola\nhola\nhola\n'),
-    );/*const SizedBox(
+    return const Scaffold(
+        body: SizedBox(
       width: double.maxFinite, // Define el ancho del iframe
       height: double.maxFinite, // Define la altura del iframe
       child: AspectRatio(
         aspectRatio: 1,
         child: HtmlElementView(viewType: 'hello-html'),
       ),
-    );*/
+    ));
   }
 }

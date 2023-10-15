@@ -8,7 +8,7 @@ void main() {
   // ignore: undefined_prefixed_name
   ui.platformViewRegistry.registerViewFactory(
       'hello-html',
-          (int viewId) => IFrameElement()
+      (int viewId) => IFrameElement()
         ..src = 'assets/html/index.html'
         ..style.border = 'none');
   runApp(const MyApp());
@@ -25,8 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  HTMLWidget(),
+      home: HTMLWidget(),
     );
   }
 }
-
