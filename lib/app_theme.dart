@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static TextStyle tsTitle = GoogleFonts.raleway(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
+    fontSize: 22,
+    fontWeight: FontWeight.w700,
     color: Colors.white,
   );
 

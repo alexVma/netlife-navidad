@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:tthh_navidad/AppTheme.dart';
+import 'package:tthh_navidad/app_theme.dart';
 
 import '../../../widgets/footer.dart';
 import '../widgets/custom_text_field.dart';
@@ -15,14 +15,10 @@ class Confirmation extends StatefulWidget {
 }
 
 class _ConfirmationState extends State<Confirmation> {
-  OutlineInputBorder outlineInputBorder = OutlineInputBorder(
-    borderSide: const BorderSide(color: Colors.white),
-    borderRadius: BorderRadius.circular(20.0),
-  );
+  Widget separator = const SizedBox(height: 25);
 
   @override
   Widget build(BuildContext context) {
-    Widget separator = const SizedBox(height: 25);
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: Colors.black,
@@ -74,6 +70,8 @@ class _ConfirmationState extends State<Confirmation> {
         ));
   }
 
+  void formValidator() {}
+
   Widget getButton() {
     return ElevatedButton(
       onPressed: () {
@@ -89,11 +87,16 @@ class _ConfirmationState extends State<Confirmation> {
         ),
         minimumSize: const Size(double.infinity, 60),
       ),
-      child: Text('Asistiré', style: AppTheme.tsTitle),
+      child: Text('ASISTIRÉ', style: AppTheme.tsTitle),
     );
   }
 
   Widget getDropdownButtonFormField() {
+    OutlineInputBorder outlineInputBorder = OutlineInputBorder(
+      borderSide: const BorderSide(color: Colors.orangeAccent, width: 2.5),
+      borderRadius: BorderRadius.circular(20.0),
+    );
+
     return DropdownButtonFormField<String>(
       items: ['Si', 'No']
           .map((label) => DropdownMenuItem(
@@ -112,16 +115,9 @@ class _ConfirmationState extends State<Confirmation> {
         labelText: 'Asistire',
         labelStyle: AppTheme.tsComponents,
         filled: true,
-        enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.orangeAccent, width: 2.5),
-          borderRadius: BorderRadius.circular(20),
-        ),
+        enabledBorder: outlineInputBorder,
         fillColor: Colors.orangeAccent.withOpacity(.25),
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.orangeAccent, width: 2.5),
-          borderRadius: BorderRadius.circular(20),
-          // Borde en color naranja
-        ),
+        focusedBorder: outlineInputBorder,
       ),
       style: AppTheme.tsComponents, // Color del texto seleccionado en blanco
     );
