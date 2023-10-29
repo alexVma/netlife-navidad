@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tthh_navidad/app_theme.dart';
 
+import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/footer.dart';
 import '../widgets/custom_text_field.dart';
 
@@ -16,6 +17,8 @@ class Confirmation extends StatefulWidget {
 
 class _ConfirmationState extends State<Confirmation> {
   Widget separator = const SizedBox(height: 25);
+  bool policyConfirm = false;
+  bool? attend;
 
   @override
   Widget build(BuildContext context) {
@@ -73,21 +76,12 @@ class _ConfirmationState extends State<Confirmation> {
   void formValidator() {}
 
   Widget getButton() {
-    return ElevatedButton(
-      onPressed: () {
-        print('Asistiré');
+    return CustomElevatedButton(
+      width: double.maxFinite,
+      onPressed: (){
+
       },
-      style: ElevatedButton.styleFrom(
-        shadowColor: Colors.orangeAccent.withOpacity(1),
-        backgroundColor: Colors.orangeAccent,
-        elevation: 5, // Altura de la sombra
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-          side: BorderSide(color: Colors.orangeAccent[700]!, width: 3.5),
-        ),
-        minimumSize: const Size(double.infinity, 60),
-      ),
-      child: Text('ASISTIRÉ', style: AppTheme.tsTitle),
+      text: 'ASISTIRÉ',
     );
   }
 
@@ -108,7 +102,7 @@ class _ConfirmationState extends State<Confirmation> {
               ))
           .toList(),
       onChanged: (value) {
-        // Puedes manejar el valor seleccionado aquí
+        attend = value == 'Si';
       },
       dropdownColor: Colors.orange[200],
       decoration: InputDecoration(
@@ -127,9 +121,11 @@ class _ConfirmationState extends State<Confirmation> {
     return Row(
       children: [
         Checkbox(
-          value: false,
+          value: policyConfirm,
           onChanged: (value) {
-            // Puedes manejar el estado del checkbox aquí
+            setState(() {
+              policyConfirm = value!;
+            });
           },
         ),
         const SizedBox(width: 10),
