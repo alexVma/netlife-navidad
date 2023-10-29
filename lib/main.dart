@@ -13,11 +13,11 @@ void main() {
         ..src = 'assets/resources/html/index.html'
         ..style.border = 'none');
   RouterFluro.setupRouter();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrangeAccent),
         useMaterial3: true,
       ),
-      home: HTMLWidget(),
+      home: const HTMLWidget(),
     );
   }
 }

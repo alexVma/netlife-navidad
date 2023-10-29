@@ -1,13 +1,11 @@
-import 'dart:js_interop';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tthh_navidad/app_theme.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
-import '../../../widgets/custom_elevated_button.dart';
-import '../../../widgets/footer.dart';
-import '../widgets/custom_text_field.dart';
+import 'package:tthh_navidad/src/widgets/custom_elevated_button.dart';
+import 'package:tthh_navidad/src/widgets/footer.dart';
+import 'package:tthh_navidad/src/comfirmacion_asistencia/ui/widgets/custom_text_field.dart';
 
 class Confirmation extends StatefulWidget {
   const Confirmation({super.key, required this.id});
@@ -107,7 +105,7 @@ class _ConfirmationState extends State<Confirmation> {
           desc = 'Lamentamos que no puedas acompañarnos, nos harás falta!';
         }
 
-        if (confAttend.isNull) {
+        if (confAttend==null) {
           AwesomeDialog(
             context: context,
             width: 300,
@@ -183,7 +181,7 @@ class _ConfirmationState extends State<Confirmation> {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        print('hola');
+                       // print('hola');
                       },
                   ),
                 ]))),

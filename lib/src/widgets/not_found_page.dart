@@ -34,7 +34,7 @@ class NotFoundPage extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Volver a Inicio'),
+              child: const Text('Volver a Inicio'),
             ),
           ],
         ),

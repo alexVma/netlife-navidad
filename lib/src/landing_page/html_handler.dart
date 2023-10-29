@@ -1,10 +1,10 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class HTMLWidget extends StatefulWidget {
+  const HTMLWidget({super.key});
+
   @override
-  _HTMLWidgetState createState() => _HTMLWidgetState();
+  createState() => _HTMLWidgetState();
 }
 
 class _HTMLWidgetState extends State<HTMLWidget> {
