@@ -66,10 +66,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - resources/html/
-    - resources/html/dist/
-    - resources/html/dist/css/
-    - resources/html/dist/images/
-    - resources/html/dist/js/
+    - resources/html/recursos/
+    - resources/html/recursos/fuentes/
+    - resources/html/recursos/img/
     - resources/img/
 
   # An image asset can refer to one or more resolution-specific "variants", see
