@@ -1,5 +1,5 @@
 import 'package:fluro/fluro.dart';
-import 'package:tthh_navidad/src/comfirmacion_asistencia/ui/screens/confirmacion.dart';
+import 'package:tthh_navidad/src/comfirmacion_asistencia/ui/screens/confirmation.dart';
 import 'package:tthh_navidad/src/widgets/not_found_page.dart';
 
 class RouterFluro {

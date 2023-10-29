@@ -42,6 +42,8 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^2.4.6
   fluro: ^2.0.5
+  google_fonts: ^6.1.0
+
 
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -69,6 +71,7 @@ flutter:
     - resources/html/dist/css/
     - resources/html/dist/images/
     - resources/html/dist/js/
+    - resources/img/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
