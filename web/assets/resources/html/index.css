@@ -1,0 +1,226 @@
+@font-face {
+    font-family: "ITCAvantGardeStd";
+    src: url('./recursos/fuentes/itc-avant-garde-gothic.otf') format('otf'),
+        url('./recursos/fuentes/itc-avant-garde-gothic.ttf') format('ttf'),
+        url('./recursos/fuentes/itc-avant-garde-gothic.woff') format('woff');    
+    font-weight: bold;
+    font-style: bold;
+}
+
+@font-face{
+    font-family: "ITCAvant";
+    src: url('./recursos/fuentes/ITCAvantGardeStd-Md.otf') format('otf'),
+    url('./recursos/fuentes/ITCAvantGardeStd-Md.ttf') format('ttf'),
+    url('./recursos/fuentes/ITCAvantGardeStd-Md.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'ITCAvantGardeStd' !important;
+    background-color: black;
+}
+
+#titulos{
+    font-family: 'ITCAvant' !important;
+    font-weight: 200;
+}
+
+.textoEnfasis {
+    font-size: 50px;
+    color: black;
+    font-weight: bold;
+    text-shadow: 1px 1px #ffc703, -1px -1px #ffc703, 1px -1px #ffc703, -1px 1px #ffc703;
+}
+
+
+.bannerPrincipal {
+    width: 100%;
+    background-color: black;
+}
+
+.bannerPrincipalImg {
+    width: 100%;
+}
+
+.contenidomedio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: black;
+    color: white;
+}
+
+.primeraColumna {
+    padding: 0 30px;
+    justify-self: center;
+    width: 90%;
+}
+
+.segundaColumna {
+    justify-self: center;
+}
+
+.formulario {
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: center;
+}
+
+.tituloSegundaColumna,
+.tituloPrimeraColumna {
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+
+.msgSpan {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btnAsistire {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.btnAsistire img {
+    width: 150px;
+}
+
+.datosFechas,
+.labelsform {
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 5px 2px #ffc703;
+    border-radius: 20px;
+    height: 40px;
+    width: 350px;
+    margin: 10px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.labelsform {
+    text-align: justify;
+    display: flex;
+    align-items: center;
+}
+
+.datosFechas {
+    border-radius: 30px;
+    border-style: solid;
+    padding: 20px;
+    width: 85%;
+    height: auto;
+    font-size: 1.4vw;
+}
+
+.lugares {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.checkAceptacion {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.checkAceptacionInput {
+    width: 50px;
+}
+
+.enlaces {
+    color: #ffc703;
+}
+
+input,
+select {
+    color: white;
+    background-color: black;
+    border: none;
+}
+
+.seccionPaco {
+    background-color: black;
+    text-align: right;
+    margin-top: -40px;
+    padding-right: 40px;
+}
+
+.paco {
+    width: 250px;
+}
+
+.footer {
+    margin-top: -80px;
+    background-color: black;
+    text-align: center;
+}
+
+.bannerPrincipalResponsive {
+    display: none;
+}
+
+.pacoMobile {
+    display: none;
+}
+
+
+@media (300px < width < 600px) {
+    .bannerPrincipalImg {
+        display: none;
+    }
+
+    .bannerPrincipalResponsive {
+        width: 100%;
+        display: flex;
+    }
+
+    .contenidomedio {
+        grid-template-columns: 100%;
+    }
+
+    .datosFechas {
+        font-size: 20px;
+    }
+
+    .datosFechas,
+    .labelsform {
+        width: 80%;
+    }
+
+    .seccionPaco {
+        margin-top: -1px;
+        padding-top: 10px;
+        padding-bottom: 30px;
+        display: flex;
+    justify-content: end;
+    }
+
+    .footer {
+        margin-top: 10px;
+        padding-bottom: 20px;
+    }
+
+    .logoNetlife {
+        width: auto;
+        height: 40px;
+    }
+
+    .logoEcuanet {
+        width: auto;
+        height: 50px;
+    }
+
+    .paco {
+        display: none;
+    }
+
+    .pacoMobile {
+        display: flex;
+        height: 250px;
+        width: auto;
+    }
+}
