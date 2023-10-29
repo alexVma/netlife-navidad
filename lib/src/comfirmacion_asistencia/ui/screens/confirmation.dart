@@ -7,6 +7,9 @@ import 'package:tthh_navidad/src/widgets/custom_elevated_button.dart';
 import 'package:tthh_navidad/src/widgets/footer.dart';
 import 'package:tthh_navidad/src/comfirmacion_asistencia/ui/widgets/custom_text_field.dart';
 
+import 'package:tthh_navidad/src/comfirmacion_asistencia/domain/entities/user.dart';
+import 'package:tthh_navidad/src/comfirmacion_asistencia/domain/use_cases/confirmation_use_case.dart';
+
 class Confirmation extends StatefulWidget {
   const Confirmation({super.key, required this.id});
 
@@ -20,6 +23,19 @@ class _ConfirmationState extends State<Confirmation> {
   Widget separator = const SizedBox(height: 25);
   bool policyConfirm = false;
   bool? attend;
+
+  String apellido = '';
+  String nombre = '';
+  String celular = '';
+
+  @override
+  void initState() {
+    super.initState();
+    User user = ConfirmationUseCase().getUser(widget.id);
+    apellido = user.apellido;
+    nombre = user.nombre;
+    celular = user.celular;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +60,21 @@ class _ConfirmationState extends State<Confirmation> {
                     separator,
                     Column(
                       children: [
-                        const CustomTextField(
+                        CustomTextField(
                           label: 'Nombre',
-                          initialText: 'Alex V.',
+                          initialText: nombre,
                         ),
                         separator,
-                        const CustomTextField(
+                        CustomTextField(
                           label: 'Apellido',
-                          initialText: 'Minga',
+                          initialText: apellido,
                         ),
                         separator,
                         getDropdownButtonFormField(),
                         separator,
-                        const CustomTextField(
+                        CustomTextField(
                           label: 'Celular',
-                          initialText: '0992628036',
+                          initialText: celular,
                         ),
                         separator,
                         getRowPersonalData(),
@@ -105,7 +121,7 @@ class _ConfirmationState extends State<Confirmation> {
           desc = 'Lamentamos que no puedas acompañarnos, nos harás falta!';
         }
 
-        if (confAttend==null) {
+        if (confAttend == null) {
           AwesomeDialog(
             context: context,
             width: 300,
@@ -181,7 +197,7 @@ class _ConfirmationState extends State<Confirmation> {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                       // print('hola');
+                        // print('hola');
                       },
                   ),
                 ]))),
