@@ -1,6 +1,9 @@
+import 'dart:js_interop';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tthh_navidad/app_theme.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/footer.dart';
@@ -78,8 +81,43 @@ class _ConfirmationState extends State<Confirmation> {
   Widget getButton() {
     return CustomElevatedButton(
       width: double.maxFinite,
-      onPressed: (){
+      onPressed: () {
+        bool isError = true;
+        String title = '';
+        String desc = '';
+        bool? confAttend;
 
+        if (attend == null) {
+          isError = true;
+          title = 'Error';
+          desc = 'Asistiras a la celebración ?\n'
+              'Elige una opcion.  ';
+        } else if (attend!) {
+          if (!policyConfirm) {
+            isError = true;
+            title = 'Error';
+            desc = 'Por favor, acepta las políticas de privacidad';
+          } else {
+            confAttend = true;
+          }
+        } else {
+          confAttend = false;
+          isError = false;
+          title = 'Información';
+          desc = 'Lamentamos que no puedas acompañarnos, nos harás falta!';
+        }
+
+        if (confAttend.isNull) {
+          AwesomeDialog(
+            context: context,
+            width: 300,
+            dialogType: isError ? DialogType.error : DialogType.info,
+            animType: AnimType.rightSlide,
+            title: title,
+            desc: desc,
+            btnOkOnPress: () {},
+          ).show();
+        } else {}
       },
       text: 'ASISTIRÉ',
     );
