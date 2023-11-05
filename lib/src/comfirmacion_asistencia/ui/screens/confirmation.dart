@@ -40,54 +40,41 @@ class _ConfirmationState extends State<Confirmation> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-        backgroundColor: Colors.black,
-        body: Stack(
+    return Center(
+      child: SizedBox(
+        width: size.width > 900 ? size.width / 5 : 300,
+        child: Column(
           children: [
-            const Footer(),
-            Center(
-              child: SizedBox(
-                width: size.width > 900 ? size.width / 3 : 300,
-                child: ListView(
-                  children: [
-                    separator,
-                    separator,
-                    Text(
-                      'CONFIRMA TU ASISTENCIA',
-                      style: AppTheme.tsTitle,
-                      textAlign: TextAlign.center,
-                    ),
-                    separator,
-                    Column(
-                      children: [
-                        CustomTextField(
-                          label: 'Nombre',
-                          initialText: nombre,
-                        ),
-                        separator,
-                        CustomTextField(
-                          label: 'Apellido',
-                          initialText: apellido,
-                        ),
-                        separator,
-                        getDropdownButtonFormField(),
-                        separator,
-                        CustomTextField(
-                          label: 'Celular',
-                          initialText: celular,
-                        ),
-                        separator,
-                        getRowPersonalData(),
-                        separator,
-                        getButton()
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+            Text(
+              'CONFIRMA TU ASISTENCIA',
+              style: AppTheme.tsTitle,
+              textAlign: TextAlign.center,
             ),
+            separator,
+            CustomTextField(
+              label: 'Nombre',
+              initialText: nombre,
+            ),
+            separator,
+            CustomTextField(
+              label: 'Apellido',
+              initialText: apellido,
+            ),
+            separator,
+            getDropdownButtonFormField(),
+            separator,
+            CustomTextField(
+              label: 'Celular',
+              initialText: celular,
+            ),
+            separator,
+            getRowPersonalData(),
+            separator,
+            getButton()
           ],
-        ));
+        ),
+      ),
+    );
   }
 
   void formValidator() {}
