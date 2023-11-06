@@ -21,9 +21,9 @@ class Footer extends StatelessWidget {
                   children: <Widget>[
                     Image.asset('resources/img/logo_netlife.png',
                         width: imageSize),
-                    Image.asset('resources/img/paco_arriba.png',
-                        width: imageSize / 2),
                     Image.asset('resources/img/ecuanet.png', width: imageSize),
+                    Image.asset('resources/img/paco_arriba.png',
+                        width: imageSize ),
                   ],
                 ),
               ),

@@ -37,13 +37,15 @@ class _HTMLWidgetState extends State<HTMLWidget> {
         backgroundColor: Colors.black,
         body: ListView(
           children: [
-            Image.asset(//header
+            Image.asset(
+                //header
                 isDesktop
                     ? 'resources/html/recursos/img/banner_principal.png'
                     : 'resources/html/recursos/img/BannerResponsive.png',
                 width: widthScreen),
-            body(isDesktop,widthScreen), //body
-            SizedBox( // footer
+            body(isDesktop, widthScreen), //body
+            SizedBox(
+                // footer
                 width: double.maxFinite,
                 height: isDesktop ? 200 : 80,
                 child: const Footer())
@@ -51,26 +53,25 @@ class _HTMLWidgetState extends State<HTMLWidget> {
         ));
   }
 
-  Widget body(bool isDesktop,double widthScreen) {
-    return  isDesktop
+  Widget body(bool isDesktop, double widthScreen) {
+    return isDesktop
         ? Row(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        SizedBox(
-            width: widthScreen / 2 - 10,
-            child: staticTexts(widthScreen)),
-        SizedBox(
-            width: widthScreen / 2 - 20,
-            child: const Confirmation(id: 'test1'))
-      ],
-    )
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              SizedBox(
+                  width: widthScreen / 2 - 10, child: staticTexts(widthScreen)),
+              SizedBox(
+                  width: widthScreen / 2 - 20,
+                  child: const Confirmation(id: 'test1'))
+            ],
+          )
         : Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        staticTexts(widthScreen),
-        const Confirmation(id: 'test1')
-      ],
-    );
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              staticTexts(widthScreen),
+              const Confirmation(id: 'test1')
+            ],
+          );
   }
 
   Widget staticTexts(double widthScreen) {

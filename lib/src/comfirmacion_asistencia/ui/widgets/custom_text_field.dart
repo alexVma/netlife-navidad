@@ -15,13 +15,12 @@ class CustomTextField extends StatelessWidget {
       absorbing: true,
       child: Container(
         decoration: BoxDecoration(
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Colors.orangeAccent
-                  .withOpacity(0.25), // Color de la sombra naranja
+              color: Colors.transparent, // Color de la sombra
               spreadRadius: 0, // Extensión de la sombra
               blurRadius: .25, // Difuminado de la sombra
-              offset: const Offset(
+              offset: Offset(
                   0, 0), // Desplazamiento de la sombra (horizontal, vertical)
             ),
           ],
@@ -33,8 +32,7 @@ class CustomTextField extends StatelessWidget {
           readOnly: true,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
-              borderSide:
-                  const BorderSide(color: Colors.orangeAccent, width: 2.5),
+              borderSide: const BorderSide(color: Colors.white, width: 2.5),
               borderRadius: BorderRadius.circular(20.0),
             ),
             labelText: label,

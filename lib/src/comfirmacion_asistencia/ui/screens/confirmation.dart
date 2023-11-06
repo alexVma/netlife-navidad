@@ -9,6 +9,7 @@ import 'package:tthh_navidad/src/comfirmacion_asistencia/ui/widgets/custom_text_
 
 import 'package:tthh_navidad/src/comfirmacion_asistencia/domain/entities/user.dart';
 import 'package:tthh_navidad/src/comfirmacion_asistencia/domain/use_cases/confirmation_use_case.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Confirmation extends StatefulWidget {
   const Confirmation({super.key, required this.id});
@@ -28,6 +29,9 @@ class _ConfirmationState extends State<Confirmation> {
   String nombre = '';
   String celular = '';
 
+  final TextEditingController _tecCedula=TextEditingController(text: '');
+  final TextEditingController _tecPhone=TextEditingController(text: '');
+
   @override
   void initState() {
     super.initState();
@@ -45,11 +49,14 @@ class _ConfirmationState extends State<Confirmation> {
         width: size.width > 900 ? size.width / 5 : 300,
         child: Column(
           children: [
+            separator,
             Text(
               'CONFIRMA TU ASISTENCIA',
               style: AppTheme.tsTitle,
               textAlign: TextAlign.center,
             ),
+            separator,
+            identificationSearcher(),
             separator,
             CustomTextField(
               label: 'Nombre',
@@ -63,10 +70,7 @@ class _ConfirmationState extends State<Confirmation> {
             separator,
             getDropdownButtonFormField(),
             separator,
-            CustomTextField(
-              label: 'Celular',
-              initialText: celular,
-            ),
+            phoneEditor(),
             separator,
             getRowPersonalData(),
             separator,
@@ -77,7 +81,71 @@ class _ConfirmationState extends State<Confirmation> {
     );
   }
 
-  void formValidator() {}
+  Widget identificationSearcher() {
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.transparent, // Color de la sombra
+            spreadRadius: 0, // Extensión de la sombra
+            blurRadius: .25, // Difuminado de la sombra
+            offset: Offset(
+                0, 0), // Desplazamiento de la sombra (horizontal, vertical)
+          ),
+        ],
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: TextFormField(
+        controller: _tecCedula,
+        style: AppTheme.tsComponents,
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.white, width: 2.5),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.white, width: 2.5),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          labelText: 'Cedula',
+          labelStyle: const TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  Widget phoneEditor() {
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.transparent, // Color de la sombra
+            spreadRadius: 0, // Extensión de la sombra
+            blurRadius: .25, // Difuminado de la sombra
+            offset: Offset(
+                0, 0), // Desplazamiento de la sombra (horizontal, vertical)
+          ),
+        ],
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: TextFormField(
+        controller: _tecPhone,
+        style: AppTheme.tsComponents,
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.white, width: 2.5),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.white, width: 2.5),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          labelText: 'Cedula',
+          labelStyle: const TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
 
   Widget getButton() {
     return CustomElevatedButton(
@@ -120,13 +188,13 @@ class _ConfirmationState extends State<Confirmation> {
           ).show();
         } else {}
       },
-      text: 'ASISTIRÉ',
+      text: 'RESPONDER',
     );
   }
 
   Widget getDropdownButtonFormField() {
     OutlineInputBorder outlineInputBorder = OutlineInputBorder(
-      borderSide: const BorderSide(color: Colors.orangeAccent, width: 2.5),
+      borderSide: const BorderSide(color: Colors.white, width: 2.5),
       borderRadius: BorderRadius.circular(20.0),
     );
 
@@ -149,7 +217,7 @@ class _ConfirmationState extends State<Confirmation> {
         labelStyle: AppTheme.tsComponents,
         filled: true,
         enabledBorder: outlineInputBorder,
-        fillColor: Colors.orangeAccent.withOpacity(.25),
+        fillColor: Colors.transparent.withOpacity(.25),
         focusedBorder: outlineInputBorder,
       ),
       style: AppTheme.tsComponents, // Color del texto seleccionado en blanco
@@ -180,11 +248,16 @@ class _ConfirmationState extends State<Confirmation> {
                   TextSpan(
                     text: 'datos personales',
                     style: AppTheme.tsComponents.copyWith(
-                      color: Colors.blue,
+                      color: Colors.orangeAccent,
                     ),
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        // print('hola');
+                      ..onTap = () async {
+                        final Uri url =
+                            Uri.parse('https://www.netlife.ec/consentimiento/');
+                        if (!await launchUrl(url,
+                            webOnlyWindowName: '_blank')) {
+                          throw Exception('Could not launch $url');
+                        }
                       },
                   ),
                 ]))),
