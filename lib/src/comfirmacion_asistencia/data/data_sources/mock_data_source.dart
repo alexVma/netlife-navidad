@@ -18,4 +18,10 @@ class MockDataSource implements ConfirmationDS {
   Future<void> saveAnswer(bool attend) {
     throw UnimplementedError();
   }
+
+  @override
+  Future<User> getUserByIdentification(String identification) {
+    // TODO: implement getUserByIdentification
+    throw UnimplementedError();
+  }
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:tthh_navidad/router.dart';
 import 'dart:ui' as ui;
 import 'package:tthh_navidad/src/landing_page/html_handler.dart';
+import 'dart:io';
+
 
 void main() {
   // ignore: undefined_prefixed_name
@@ -13,6 +15,7 @@ void main() {
         ..src = 'assets/resources/html/index.html'
         ..style.border = 'none');
   RouterFluro.setupRouter();
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -31,5 +34,13 @@ class MyApp extends StatelessWidget {
       ),
       home: const HTMLWidget(),
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
 }

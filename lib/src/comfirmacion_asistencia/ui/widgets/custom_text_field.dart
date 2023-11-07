@@ -5,19 +5,20 @@ import 'package:tthh_navidad/app_theme.dart';
 class CustomTextField extends StatelessWidget {
   final String label;
   final String initialText;
-
-  const CustomTextField(
+  final TextEditingController tec=TextEditingController();
+  CustomTextField(
       {super.key, required this.label, required this.initialText});
 
   @override
   Widget build(BuildContext context) {
+    tec.text=initialText;
     return AbsorbPointer(
       absorbing: true,
       child: Container(
         decoration: BoxDecoration(
-          boxShadow: const [
+          boxShadow:  [
             BoxShadow(
-              color: Colors.transparent, // Color de la sombra
+              color: Colors.orangeAccent.withOpacity(0.25), // Color de la sombra
               spreadRadius: 0, // Extensión de la sombra
               blurRadius: .25, // Difuminado de la sombra
               offset: Offset(
@@ -28,11 +29,11 @@ class CustomTextField extends StatelessWidget {
         ),
         child: TextFormField(
           style: AppTheme.tsComponents,
-          initialValue: initialText,
+          controller: tec,
           readOnly: true,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.white, width: 2.5),
+              borderSide: const BorderSide(color: Colors.orangeAccent, width: 2.5),
               borderRadius: BorderRadius.circular(20.0),
             ),
             labelText: label,

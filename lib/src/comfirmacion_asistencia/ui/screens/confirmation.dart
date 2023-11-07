@@ -32,13 +32,22 @@ class _ConfirmationState extends State<Confirmation> {
   final TextEditingController _tecCedula=TextEditingController(text: '');
   final TextEditingController _tecPhone=TextEditingController(text: '');
 
+  void getDataByCedula()async{
+    User user = await ConfirmationUseCase().getUserByIdentification(_tecCedula.text);
+    setState(() {
+      apellido = user.apellido;
+      nombre = user.nombre;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    User user = ConfirmationUseCase().getUser(widget.id);
-    apellido = user.apellido;
-    nombre = user.nombre;
-    celular = user.celular;
+    _tecCedula.addListener(() {
+      if(_tecCedula.text.length>=10){
+        getDataByCedula();
+      }
+    });
   }
 
   @override
@@ -107,7 +116,7 @@ class _ConfirmationState extends State<Confirmation> {
             borderSide: const BorderSide(color: Colors.white, width: 2.5),
             borderRadius: BorderRadius.circular(20.0),
           ),
-          labelText: 'Cedula',
+          labelText: 'Digita tu Cedula',
           labelStyle: const TextStyle(color: Colors.white),
         ),
       ),
@@ -140,7 +149,7 @@ class _ConfirmationState extends State<Confirmation> {
             borderSide: const BorderSide(color: Colors.white, width: 2.5),
             borderRadius: BorderRadius.circular(20.0),
           ),
-          labelText: 'Cedula',
+          labelText: 'Celular',
           labelStyle: const TextStyle(color: Colors.white),
         ),
       ),
