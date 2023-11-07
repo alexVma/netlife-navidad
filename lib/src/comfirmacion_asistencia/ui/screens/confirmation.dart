@@ -26,17 +26,22 @@ class _ConfirmationState extends State<Confirmation> {
   bool? attend;
 
   String apellido = '';
+  String ciudadEvento = '';
   String nombre = '';
   String celular = '';
 
   final TextEditingController _tecCedula=TextEditingController(text: '');
   final TextEditingController _tecPhone=TextEditingController(text: '');
+  ConfirmationUseCase confirmationUseCase=ConfirmationUseCase();
+  User? user;
 
   void getDataByCedula()async{
-    User user = await ConfirmationUseCase().getUserByIdentification(_tecCedula.text);
+    user = await confirmationUseCase.getUserByIdentification(_tecCedula.text);
     setState(() {
-      apellido = user.apellido;
-      nombre = user.nombre;
+      apellido = user!.apellido;
+      nombre = user!.nombre;
+      ciudadEvento = user!.ciudadEvento!;
+      _tecPhone.text=user!.celular;
     });
   }
 
@@ -75,6 +80,11 @@ class _ConfirmationState extends State<Confirmation> {
             CustomTextField(
               label: 'Apellido',
               initialText: apellido,
+            ),
+            separator,
+            CustomTextField(
+              label: 'Ciudad Evento',
+              initialText: ciudadEvento,
             ),
             separator,
             getDropdownButtonFormField(),
@@ -159,11 +169,17 @@ class _ConfirmationState extends State<Confirmation> {
   Widget getButton() {
     return CustomElevatedButton(
       width: double.maxFinite,
-      onPressed: () {
+      onPressed: () async {
         bool isError = true;
         String title = '';
         String desc = '';
         bool? confAttend;
+
+        if(user==null){
+          isError = true;
+          title = 'Error';
+          desc = 'Primero digite su cedula\npara cargar su informacion';
+        }
 
         if (attend == null) {
           isError = true;
@@ -195,7 +211,14 @@ class _ConfirmationState extends State<Confirmation> {
             desc: desc,
             btnOkOnPress: () {},
           ).show();
-        } else {}
+        } else {
+          print(confAttend);
+          print(user!=null);
+          if(confAttend && user!=null){
+            bool response=await confirmationUseCase.saveUserConfirmation(user!.id, _tecPhone.text);
+            print('response en el front: $response');
+          }
+        }
       },
       text: 'RESPONDER',
     );

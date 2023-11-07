@@ -5,12 +5,12 @@ class MockDataSource implements ConfirmationDS {
   @override
   User getUser(String userId) {
     Map<String, User> mockUsers = {
-      'test1': User(nombre: 'Alex', apellido: 'Minga', celular: '0992628036'),
+      'test1': User(id:'1',nombre: 'Alex', apellido: 'Minga', celular: '0992628036'),
       'test2':
-          User(nombre: 'Nombre', apellido: 'Apellido', celular: '0992628036'),
+          User(id:'2',nombre: 'Nombre', apellido: 'Apellido', celular: '0992628036'),
     };
     return mockUsers[userId] == null
-        ? User(nombre: '', apellido: '', celular: '')
+        ? User(id:'0',nombre: '', apellido: '', celular: '')
         : mockUsers[userId]!;
   }
 
@@ -22,6 +22,12 @@ class MockDataSource implements ConfirmationDS {
   @override
   Future<User> getUserByIdentification(String identification) {
     // TODO: implement getUserByIdentification
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> saveUserConfirmation(String userId, String celular) {
+    // TODO: implement saveUserConfirmation
     throw UnimplementedError();
   }
 }
