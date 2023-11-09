@@ -14,7 +14,7 @@ class ConfirmationUseCase {
     return rds.getUserByIdentification(identification);
   }
 
-  Future<bool> saveUserConfirmation(String id, String phone) {
-    return rds.saveUserConfirmation(id, phone);
+  Future<bool> saveUserConfirmation(String id, String phone,bool attend) {
+    return rds.saveUserConfirmation(id, phone,attend);
   }
 }

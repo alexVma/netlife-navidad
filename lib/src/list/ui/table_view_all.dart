@@ -30,21 +30,26 @@ class _MyDataTableState extends State<TableViewAll> {
 
         // Itera a través de la lista e imprime cada objeto JSON
         for (var item in jsonResponse) {
-          data.add(User(
-              id: item['id'],
-              apellido: item['apellidos'],
-              nombre: item['nombres'],
-              celular: item['celular'] ?? '',
-              ciudadEvento: item['ciudad_evento'] ?? '',
-              asistire: item['confirmacion'] ?? false));
+          try {
+            data.add(User(
+                id: item['id'],
+                apellido: item['apellidos'],
+                nombre: item['nombres'],
+                celular: item['celular'] ?? '',
+                ciudadEvento: item['ciudad_evento'] ?? '',
+                asistire: item['confirmacion'] ?? false));
 
-          setState(() {
-            data.sort((a, b) => a.asistire == b.asistire
-                ? 0
-                : a.asistire!
-                    ? -1
-                    : 1);
-          });
+            setState(() {
+              data.sort((a, b) =>
+              a.asistire == b.asistire
+                  ? 0
+                  : a.asistire!
+                  ? -1
+                  : 1);
+            });
+          }catch(e){
+            print(e);
+          }
         }
       } else {
         throw Exception('Error al cargar el código QR');

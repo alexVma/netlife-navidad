@@ -60,10 +60,12 @@ class RemoteDataSource implements ConfirmationDS {
   }
 
   @override
-  Future<bool> saveUserConfirmation(String userId, String celular) async {
+  Future<bool> saveUserConfirmation(String userId, String celular,bool attend) async {
     //http://netlifeaccesstestqa11.netlife.net.ec/api/usuario/confirmacion/{id}/{celular}?id=qe&celular=qew
     final url =
-        '${AppConfig.BACKEND_URL}usuario/confirmacion/{id}/{celular}?id=$userId&celular=$celular';
+        '${AppConfig.BACKEND_URL}usuario/confirmacion/{id}/{celular}?id=$userId&celular=$celular&confirmacion=$attend';
+    print(attend);
+    print(url);
     try {
       final response = await http.put(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -72,6 +74,7 @@ class RemoteDataSource implements ConfirmationDS {
         return false;
       }
     } catch (error) {
+      print(error);
       return false;
     }
   }

@@ -30,7 +30,7 @@ class MockDataSource implements ConfirmationDS {
   }
 
   @override
-  Future<bool> saveUserConfirmation(String userId, String celular) {
+  Future<bool> saveUserConfirmation(String userId, String celular,bool attend) {
     // TODO: implement saveUserConfirmation
     throw UnimplementedError();
   }

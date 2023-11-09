@@ -237,10 +237,10 @@ class _ConfirmationState extends State<Confirmation> {
             btnOkOnPress: () {},
           ).show();
         } else {
-          if (confAttend && user != null) {
+          if (user != null) {
             _showLoadingDialog(context);
             bool response = await confirmationUseCase.saveUserConfirmation(
-                user!.id, _tecPhone.text);
+                user!.id, _tecPhone.text,attend!);
             Navigator.of(context).pop();
             if (response) {
               AwesomeDialog(
@@ -250,7 +250,7 @@ class _ConfirmationState extends State<Confirmation> {
                 animType: AnimType.rightSlide,
                 title: 'Info',
                 desc:
-                    'Gracias por confirmar tu asistencia\nEspera tu còdigo QR para el ingreso al evento',
+                attend!?'Gracias por confirmar tu asistencia\nEspera tu còdigo QR para el ingreso al evento':'Lamentamos que no puedas acompañarnos, nos harás falta!',
                 btnOkOnPress: () {},
               ).show();
             } else {
