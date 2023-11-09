@@ -23,7 +23,7 @@ class Footer extends StatelessWidget {
                         width: imageSize),
                     Image.asset('resources/img/ecuanet.png', width: imageSize),
                     Image.asset('resources/img/paco_arriba.png',
-                        width: imageSize ),
+                        width: imageSize),
                   ],
                 ),
               ),

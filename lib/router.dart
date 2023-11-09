@@ -1,12 +1,16 @@
 import 'package:fluro/fluro.dart';
-import 'package:tthh_navidad/src/comfirmacion_asistencia/ui/screens/confirmation.dart';
+import 'package:tthh_navidad/src/comfirmacion_asistencia/ui/screens/confirmacion_page.dart';
+import 'package:tthh_navidad/src/list/ui/table_view_all.dart';
 import 'package:tthh_navidad/src/widgets/not_found_page.dart';
 
 class RouterFluro {
   static final router = FluroRouter();
   static final Handler _confirmHandler = Handler(
       handlerFunc: (context, Map<String, dynamic> params) =>
-          Confirmation(id: params['id'][0]));
+          ConfirmacionPage());
+
+  static final Handler _viewAllHandler = Handler(
+      handlerFunc: (context, Map<String, dynamic> params) => TableViewAll());
 
   static void setupRouter() {
     router.notFoundHandler =
@@ -15,8 +19,13 @@ class RouterFluro {
     });
 
     router.define(
-      'confirmacion/:id',
+      'confirmacion',
       handler: _confirmHandler,
+    );
+
+    router.define(
+      'listar',
+      handler: _viewAllHandler,
     );
   }
 }

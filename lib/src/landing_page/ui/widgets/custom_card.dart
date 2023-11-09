@@ -36,13 +36,13 @@ class CustomCard extends StatelessWidget {
               padding: EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Text('CUENCA - 8 DE DICIEMBRE',
+                  Text('CUENCA ',
                       style: AppTheme.tsTitle
                           .copyWith(fontSize: AppTheme.tsTitle.fontSize! - 3)),
-                  Text('GUAYAQUIL - 15 DE DICIEMBRE',
+                  Text('GUAYAQUIL',
                       style: AppTheme.tsTitle
                           .copyWith(fontSize: AppTheme.tsTitle.fontSize! - 3)),
-                  Text('QUITO - 22 DE DICIEMBRE',
+                  Text('QUITO',
                       style: AppTheme.tsTitle
                           .copyWith(fontSize: AppTheme.tsTitle.fontSize! - 3)),
                 ],

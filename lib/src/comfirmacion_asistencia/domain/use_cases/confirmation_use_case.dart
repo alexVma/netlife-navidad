@@ -10,12 +10,11 @@ class ConfirmationUseCase {
     return mds.getUser(userId);
   }
 
-  Future<User> getUserByIdentification(String identification){
-
+  Future<User> getUserByIdentification(String identification) {
     return rds.getUserByIdentification(identification);
   }
 
-  Future<bool> saveUserConfirmation(String id,String phone){
-    return rds.saveUserConfirmation(id,phone);
+  Future<bool> saveUserConfirmation(String id, String phone) {
+    return rds.saveUserConfirmation(id, phone);
   }
 }

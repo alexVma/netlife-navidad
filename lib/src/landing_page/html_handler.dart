@@ -60,17 +60,12 @@ class _HTMLWidgetState extends State<HTMLWidget> {
             children: [
               SizedBox(
                   width: widthScreen / 2 - 10, child: staticTexts(widthScreen)),
-              SizedBox(
-                  width: widthScreen / 2 - 20,
-                  child: const Confirmation(id: 'test1'))
+              SizedBox(width: widthScreen / 2 - 20, child: const Confirmation())
             ],
           )
         : Column(
             mainAxisSize: MainAxisSize.max,
-            children: [
-              staticTexts(widthScreen),
-              const Confirmation(id: 'test1')
-            ],
+            children: [staticTexts(widthScreen), const Confirmation()],
           );
   }
 

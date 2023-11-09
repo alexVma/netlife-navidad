@@ -3,7 +3,14 @@ class User {
   String apellido;
   String nombre;
   String celular;
-  String? ciudadEvento='';
+  String? ciudadEvento = '';
+  bool? asistire;
 
-  User({required this.id,required this.apellido, required this.nombre, required this.celular,  this.ciudadEvento});
+  User(
+      {required this.id,
+      required this.apellido,
+      required this.nombre,
+      required this.celular,
+      this.ciudadEvento,
+      this.asistire});
 }

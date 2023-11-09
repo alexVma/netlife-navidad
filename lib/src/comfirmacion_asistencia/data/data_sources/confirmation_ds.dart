@@ -4,5 +4,5 @@ abstract class ConfirmationDS {
   User getUser(String userId);
   Future<void> saveAnswer(bool attend);
   Future<User> getUserByIdentification(String identification);
-  Future<bool> saveUserConfirmation(String userId,String celular);
+  Future<bool> saveUserConfirmation(String userId, String celular);
 }

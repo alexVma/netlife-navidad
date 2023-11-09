@@ -12,9 +12,7 @@ import 'package:tthh_navidad/src/comfirmacion_asistencia/domain/use_cases/confir
 import 'package:url_launcher/url_launcher.dart';
 
 class Confirmation extends StatefulWidget {
-  const Confirmation({super.key, required this.id});
-
-  final String id;
+  const Confirmation({super.key});
 
   @override
   State<Confirmation> createState() => _ConfirmationState();
@@ -30,18 +28,18 @@ class _ConfirmationState extends State<Confirmation> {
   String nombre = '';
   String celular = '';
 
-  final TextEditingController _tecCedula=TextEditingController(text: '');
-  final TextEditingController _tecPhone=TextEditingController(text: '');
-  ConfirmationUseCase confirmationUseCase=ConfirmationUseCase();
+  final TextEditingController _tecCedula = TextEditingController(text: '');
+  final TextEditingController _tecPhone = TextEditingController(text: '');
+  ConfirmationUseCase confirmationUseCase = ConfirmationUseCase();
   User? user;
 
-  void getDataByCedula()async{
+  void getDataByCedula() async {
     user = await confirmationUseCase.getUserByIdentification(_tecCedula.text);
     setState(() {
       apellido = user!.apellido;
       nombre = user!.nombre;
       ciudadEvento = user!.ciudadEvento!;
-      _tecPhone.text=user!.celular;
+      _tecPhone.text = user!.celular;
     });
   }
 
@@ -49,7 +47,7 @@ class _ConfirmationState extends State<Confirmation> {
   void initState() {
     super.initState();
     _tecCedula.addListener(() {
-      if(_tecCedula.text.length>=10){
+      if (_tecCedula.text.length >= 10) {
         getDataByCedula();
       }
     });
@@ -93,10 +91,30 @@ class _ConfirmationState extends State<Confirmation> {
             separator,
             getRowPersonalData(),
             separator,
-            getButton()
+            getButton(context)
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showLoadingDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible:
+          false, // El usuario no puede cerrar el popup tocando fuera de él
+      builder: (BuildContext context) {
+        return const AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(), // Spinner dentro del popup
+              SizedBox(height: 20),
+              Text('Cargando...'), // Mensaje opcional de carga
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -126,7 +144,7 @@ class _ConfirmationState extends State<Confirmation> {
             borderSide: const BorderSide(color: Colors.white, width: 2.5),
             borderRadius: BorderRadius.circular(20.0),
           ),
-          labelText: 'Digita tu Cedula',
+          labelText: 'Digita tu Cédula',
           labelStyle: const TextStyle(color: Colors.white),
         ),
       ),
@@ -166,7 +184,7 @@ class _ConfirmationState extends State<Confirmation> {
     );
   }
 
-  Widget getButton() {
+  Widget getButton(BuildContext context) {
     return CustomElevatedButton(
       width: double.maxFinite,
       onPressed: () async {
@@ -174,12 +192,6 @@ class _ConfirmationState extends State<Confirmation> {
         String title = '';
         String desc = '';
         bool? confAttend;
-
-        if(user==null){
-          isError = true;
-          title = 'Error';
-          desc = 'Primero digite su cedula\npara cargar su informacion';
-        }
 
         if (attend == null) {
           isError = true;
@@ -201,6 +213,19 @@ class _ConfirmationState extends State<Confirmation> {
           desc = 'Lamentamos que no puedas acompañarnos, nos harás falta!';
         }
 
+        if (user == null || user!.nombre == 'Identificacion No existe') {
+          confAttend = null;
+          isError = true;
+          title = 'Error';
+          desc = 'Digite correctamente su cédula\npara cargar su informacion';
+        }
+        if (_tecPhone.text.length != 10) {
+          confAttend = null;
+          isError = true;
+          title = 'Error';
+          desc = 'Por favor, ingrese un numero de celular valido';
+        }
+
         if (confAttend == null) {
           AwesomeDialog(
             context: context,
@@ -212,11 +237,33 @@ class _ConfirmationState extends State<Confirmation> {
             btnOkOnPress: () {},
           ).show();
         } else {
-          print(confAttend);
-          print(user!=null);
-          if(confAttend && user!=null){
-            bool response=await confirmationUseCase.saveUserConfirmation(user!.id, _tecPhone.text);
-            print('response en el front: $response');
+          if (confAttend && user != null) {
+            _showLoadingDialog(context);
+            bool response = await confirmationUseCase.saveUserConfirmation(
+                user!.id, _tecPhone.text);
+            Navigator.of(context).pop();
+            if (response) {
+              AwesomeDialog(
+                context: context,
+                width: 300,
+                dialogType: DialogType.info,
+                animType: AnimType.rightSlide,
+                title: 'Info',
+                desc:
+                    'Gracias por confirmar tu asistencia\nEspera tu còdigo QR para el ingreso al evento',
+                btnOkOnPress: () {},
+              ).show();
+            } else {
+              AwesomeDialog(
+                context: context,
+                width: 300,
+                dialogType: DialogType.error,
+                animType: AnimType.rightSlide,
+                title: 'Info',
+                desc: 'A ocurrido un problema',
+                btnOkOnPress: () {},
+              ).show();
+            }
           }
         }
       },

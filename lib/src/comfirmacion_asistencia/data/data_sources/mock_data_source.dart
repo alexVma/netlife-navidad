@@ -5,12 +5,16 @@ class MockDataSource implements ConfirmationDS {
   @override
   User getUser(String userId) {
     Map<String, User> mockUsers = {
-      'test1': User(id:'1',nombre: 'Alex', apellido: 'Minga', celular: '0992628036'),
-      'test2':
-          User(id:'2',nombre: 'Nombre', apellido: 'Apellido', celular: '0992628036'),
+      'test1': User(
+          id: '1', nombre: 'Alex', apellido: 'Minga', celular: '0992628036'),
+      'test2': User(
+          id: '2',
+          nombre: 'Nombre',
+          apellido: 'Apellido',
+          celular: '0992628036'),
     };
     return mockUsers[userId] == null
-        ? User(id:'0',nombre: '', apellido: '', celular: '')
+        ? User(id: '0', nombre: '', apellido: '', celular: '')
         : mockUsers[userId]!;
   }
 
